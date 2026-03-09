@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lúmina | Alta Orfebrería y Joyería en Plata</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* =========================================
+           VARIABLES DE DISEÑO (NUEVA PALETA PLATA)
+           ========================================= */
+        :root {
+            /* Fondos (Modo Oscuro Obligatorio) */
+            --bg-primary: #000000;
+            --bg-secondary: #09090B;
+            --bg-tertiary: #111114;
+            /* Ligeramente más claro para contraste */
+
+            /* NUEVO ACENTO: ESCALA DE PLATA (Cool Greys) */
+            --silver-50: #FAFAFA;
+            /* Brillo máximo */
+            --silver-100: #F1F1F4;
+            --silver-200: #E4E4E9;
+            --silver-300: #D1D1D8;
+            --silver-400: #A1A1AA;
+            /* Plata mate */
+            --silver-500: #C0C0C0;
+            /* COLOR BASE PLATA CLÁSICA */
+            --silver-600: #8E8E93;
+            --silver-700: #636366;
+            --silver-800: #48484A;
+            --silver-900: #2C2C2E;
+            /* Platino oscuro */
+
+            /* Textos */
+            --text-primary: #FFFFFF;
+            --text-secondary: #E4E4E7;
+            --text-tertiary: #A1A1AA;
+            --text-quaternary: #71717A;
+        }
+
+        /* =========================================
+           RESET Y ESTILOS BASE
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Tipografía */
+        h1,
+        h2,
+        h3,
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-title {
+            font-size: 76px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .body-large {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-tertiary);
+        }
+
+        .label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--silver-300);
+            /* Ajustado para legibilidad */
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Utilidades de Diseño con Paleta Plata */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--silver-500) 0%, var(--silver-200) 50%, var(--silver-500) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glow-text {
+            /* Brillo plateado sutil */
+            text-shadow: 0 0 15px rgba(192, 192, 192, 0.4), 0 0 30px rgba(192, 192, 192, 0.2);
+        }
+
+        /* =========================================
+           BOTONES (ESTILO PLATA/ACERO)
+           ========================================= */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            /* Gradiente efecto metal pulido */
+            background: linear-gradient(135deg, var(--silver-700) 0%, var(--silver-500) 40%, var(--silver-300) 60%, var(--silver-500) 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 5s ease infinite, pulse-glow-silver 3s ease-in-out infinite;
+            color: #000000;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 16px 32px;
+            border-radius: 4px;
+            /* Un poco más angulado para estética plata */
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1) saturate(1.1);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid rgba(192, 192, 192, 0.4);
+            color: var(--silver-200);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 16px 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(192, 192, 192, 0.1);
+            border-color: var(--silver-500);
+        }
+
+        /* =========================================
+           NAVBAR
+           ========================================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            padding: 16px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            color: var(--silver-100);
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--silver-100);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--silver-300);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--silver-300);
+            transition: 0.3s;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            /* Gradiente de fondo ajustado a plata */
+            background: radial-gradient(ellipse at top right, rgba(192, 192, 192, 0.12) 0%, transparent 60%),
+                var(--bg-primary);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float-particle 20s infinite ease-in-out;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        /* Visual Anillo 3D (Reflejo Plata/Aura) */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .aura-ring {
+            width: 350px;
+            height: 350px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float-ring 8s ease-in-out infinite;
+            opacity: 0;
+            /* Para animación de entrada */
+        }
+
+        .aura-ring-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            /* Borde efecto cromo */
+            border: 4px solid rgba(228, 228, 233, 0.6);
+            /* Sombra efecto brillo plata fría */
+            box-shadow: 0 0 60px rgba(192, 192, 192, 0.3), 0 0 120px rgba(192, 192, 192, 0.15), inset 0 0 80px rgba(192, 192, 192, 0.2);
+            backdrop-filter: blur(5px);
+            transform: rotateX(60deg) rotateY(20deg);
+        }
+
+        /* Animaciones de Carga Hero */
+        .hero-title {
+            animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-label {
+            animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta-group {
+            animation: scale-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s forwards;
+            opacity: 0;
+        }
+
+        .aura-ring {
+            animation: fade-in-rotate 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        /* =========================================
+           BARRA DE CREDIBILIDAD (STATS)
+           ========================================= */
+        .stats-section {
+            padding: 60px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(192, 192, 192, 0.08);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.08);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 24px;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            /* Separadores efecto platino oscuro */
+            background: linear-gradient(to bottom, transparent, rgba(142, 142, 147, 0.2), transparent);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--silver-100);
+            /* Ajustado para legibilidad en fondo oscuro */
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* =========================================
+           SERVICIOS EXCLUSIVOS (FLIP CARDS)
+           ========================================= */
+        .services-section {
+            padding: 120px 0;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 320px;
+            cursor: pointer;
+            opacity: 0;
+            /* Scroll Reveal */
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 8px;
+            /* Un poco más angulado */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.06) 0%, rgba(192, 192, 192, 0.02) 100%);
+            border: 1px solid rgba(192, 192, 192, 0.15);
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .treatment-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            color: var(--silver-300);
+            /* Iconos plata mate */
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(192, 192, 192, 0.08);
+            color: var(--silver-200);
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(192, 192, 192, 0.2);
+        }
+
+        /* Glass Cards (General ajustado a Plata) */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.06) 0%, rgba(192, 192, 192, 0.03) 50%, rgba(192, 192, 192, 0.06) 100%);
+            /* SIN backdrop-filter: rompe backface-visibility:hidden en Chromium dentro de preserve-3d */
+            border: 1px solid rgba(192, 192, 192, 0.12);
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+        }
+
+        /* Solo aplicar el hover lift a glass-cards que NO sean parte de flip-card */
+        .glass-card:not(.flip-card-back):hover {
+            border-color: rgba(192, 192, 192, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(192, 192, 192, 0.15);
+            transform: translateY(-4px);
+        }
+
+        /* =========================================
+           GALERÍA Y EQUIPO
+           ========================================= */
+        .gallery-section,
+        .team-section {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .team-section {
+            background: var(--bg-tertiary);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--silver-600);
+            /* Borde platino mate */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px auto;
+            background: rgba(192, 192, 192, 0.08);
+            color: var(--silver-300);
+        }
+
+        /* =========================================
+           TESTIMONIOS
+           ========================================= */
+        .testimonials-section {
+            padding: 100px 0;
+            background: var(--bg-primary);
+        }
+
+        .quote-icon {
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            color: var(--silver-500);
+            /* Comillas plata pulida */
+            opacity: 0.3;
+            line-height: 0;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            color: var(--silver-400);
+            margin-top: 16px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* =========================================
+        CTA FINAL (Efecto Fundición Plata Fría)
+        ========================================= */
+        .cta-final {
+            padding: 120px 0;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(192, 192, 192, 0.12) 0%, var(--bg-primary) 70%);
+            border-top: 1px solid rgba(192, 192, 192, 0.08);
+            position: relative;
+        }
+
+        /* =========================================
+        FOOTER
+        ========================================= */
+        footer {
+            background: #000;
+            padding: 80px 0 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: var(--silver-300);
+            /* Títulos footer platino mate */
+            margin-bottom: 24px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--silver-100);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-quaternary);
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        /* =========================================
+        KEYFRAMES (Animaciones exactas del prompt)
+        ========================================= */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fade-in-rotate {
+            from {
+                opacity: 0;
+                transform: rotate(-10deg) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+            }
+        }
+
+        @keyframes float-ring {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateX(60deg) rotateY(20deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotateX(65deg) rotateY(25deg);
+            }
+        }
+
+        @keyframes float-particle {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+
+            25% {
+                transform: translate(80px, -80px);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translate(-40px, -160px);
+                opacity: 0.5;
+            }
+
+            75% {
+                transform: translate(-80px, -80px);
+                opacity: 0.7;
+            }
+        }
+
+        /* NUEVA ANIMACIÓN PULSE GLOW SILVER */
+        @keyframes pulse-glow-silver {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 1px rgba(192, 192, 192, 0.4), 0 4px 20px rgba(192, 192, 192, 0.3), 0 0 50px rgba(192, 192, 192, 0.15);
+            }
+
+            50% {
+                box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.7), 0 8px 35px rgba(192, 192, 192, 0.5), 0 0 70px rgba(192, 192, 192, 0.3);
+            }
+        }
+
+        @keyframes gradient-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* =========================================
+        RESPONSIVE (Mobile First / Breakpoints)
+        ========================================= */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid,
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .aura-ring {
+                width: 250px;
+                height: 250px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin-top: 40px;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 24px;
+                border-bottom: 1px solid var(--silver-600);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .services-grid,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .aura-ring {
+                width: 180px;
+                height: 180px;
+                margin: 40px auto 0 auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 20px;
+            }
+
+            .stat-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .particle:nth-child(n+20) {
+                display: none;
+            }
+
+            .flip-card:hover .flip-card-inner {
+                transform: rotateY(0deg);
+            }
+
+            .flip-card.flipped .flip-card-inner {
+                transform: rotateY(180deg);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo-text glow-text">LÚMINA</a>
+            <div class="nav-links">
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#galeria" class="nav-link">Colecciones</a>
+                <a href="#equipo" class="nav-link">Orfebres</a>
+                <a href="#testimonios" class="nav-link">Testimonios</a>
+                <a href="#contacto" class="btn-primary" style="padding: 10px 24px; font-size: 14px;">Cotizar Pieza</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="particles"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="label hero-label">✨ Atelier de Alta Orfebrería</span>
+                <h1 class="hero-title">Forjamos tu esencia en <span class="text-gradient">plata eterna</span></h1>
+                <p class="body-large hero-subtitle">Joyería fina, compra segura y restauración meticulosa. Creamos y
+                    devolvemos la vida a piezas únicas que cuentan tu historia con brillo metálico puro.</p>
+                <div class="hero-buttons hero-cta-group">
+                    <a href="#contacto" class="btn-primary">Diseñar a Medida</a>
+                    <a href="#servicios" class="btn-outline">Vender mi Plata</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="aura-ring">
+                    <div class="aura-ring-inner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <div class="stat-number"><span class="counter" data-target="20">0</span>+</div>
+                <div class="stat-label">Años de Tradición</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="counter" data-target="5000">0</span>+</div>
+                <div class="stat-label">Piezas Restauradas</div>
+            </div>
+            <div class="stat-number stat-item">
+                <div class="stat-number" style="justify-content: center;"><span class="counter"
+                        data-target="999">0</span></div>
+                <div class="stat-label">Plata Ley Garantizada</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span class="counter" data-target="100">0</span>%</div>
+                <div class="stat-label">Tasación Certificada</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="servicios">
+        <div class="container">
+            <div class="section-header card-anim">
+                <span class="label">Maestría y Precisión Fría</span>
+                <h2 class="section-title glow-text">Nuestros Servicios Exclusivos</h2>
+                <p class="body-large" style="max-width: 600px; margin: 0 auto;">Cuidamos cada gramo de tu inversión.
+                    Descubre la excelencia en cada uno de nuestros procesos orfebres, certificados en pureza.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="flip-card card-anim">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="treatment-icon">⚖️</span>
+                            <h3 class="glow-text">Valoración y Compra</h3>
+                        </div>
+                        <div class="flip-card-back glass-card">
+                            <h3>Valoración y Compra</h3>
+                            <p>Tasación justa, transparente y al instante. Compramos tu plata garantizando el mejor
+                                valor del mercado, certificado.</p>
+                            <div class="tags">
+                                <span class="tag">Pago inmediato</span>
+                                <span class="tag">Tasación Técnica</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card card-anim">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="treatment-icon">💍</span>
+                            <h3 class="glow-text">Diseño a Medida</h3>
+                        </div>
+                        <div class="flip-card-back glass-card">
+                            <h3>Diseño a Medida</h3>
+                            <p>De tu imaginación a la realidad. Bocetamos y fundimos joyas únicas exclusivas para ti, en
+                                plata u platino.</p>
+                            <div class="tags">
+                                <span class="tag">Diseño 3D</span>
+                                <span class="tag">Plata Ley 999</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card card-anim">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="treatment-icon">✨</span>
+                            <h3 class="glow-text">Restauración Premium</h3>
+                        </div>
+                        <div class="flip-card-back glass-card">
+                            <h3>Restauración Premium</h3>
+                            <p>Devolvemos el brillo original frío a tus reliquias. Pulido, soldadura invisible y
+                                limpieza ultrasónica.</p>
+                            <div class="tags">
+                                <span class="tag">Cromo Espejo</span>
+                                <span class="tag">Técnica Avanzada</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card card-anim">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="treatment-icon">⛓️</span>
+                            <h3 class="glow-text">Cadenas y Pulseras</h3>
+                        </div>
+                        <div class="flip-card-back glass-card">
+                            <h3>Cadenas y Pulseras</h3>
+                            <p>Venta de colecciones exclusivas. Eslabones forjados a mano o técnicos con acabados de
+                                alta resistencia.</p>
+                            <div class="tags">
+                                <span class="tag">Estilo Técnico</span>
+                                <span class="tag">Plata Maciza</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card card-anim">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="treatment-icon">🔬</span>
+                            <h3 class="glow-text">Grabado Técnico</h3>
+                        </div>
+                        <div class="flip-card-back glass-card">
+                            <h3>Grabado Técnico</h3>
+                            <p>Marcas imborrables de alta definición. Grabado láser para nombres, fechas, huellas o
+                                códigos.</p>
+                            <div class="tags">
+                                <span class="tag">Láser Fibra</span>
+                                <span class="tag">Micrométrico</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card card-anim">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <span class="treatment-icon">🛡️</span>
+                            <h3 class="glow-text">Baño de Rodio</h3>
+                        </div>
+                        <div class="flip-card-back glass-card">
+                            <h3>Baño de Rodio y Platino</h3>
+                            <p>Protección y acabados de lujo técnico para que tu plata resista el paso del tiempo sin
+                                oxidarse ni oscurecerse.</p>
+                            <div class="tags">
+                                <span class="tag">Cromo Puro</span>
+                                <span class="tag">Lujo Eterno</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section" id="galeria">
+        <div class="container">
+            <div class="section-header card-anim">
+                <h2 class="section-title">El arte de la transformación cromo</h2>
+                <p>Resultados reales de máxima pureza. Cada pieza es forjada o mecanizada por nuestros maestros.</p>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card card-anim text-center" style="text-align: center;">
+                    <div style="font-size: 50px; margin-bottom: 20px; color: var(--silver-400);">🕊️</div>
+                    <h3 style="color: var(--silver-100); margin-bottom: 10px;">Restauración de Reliquia</h3>
+                    <p>Plata de Ley Antigua, limpieza profunda y pulido cromo espejo. Recuperación de detalles
+                        micrométricos.</p>
+                </div>
+                <div class="glass-card card-anim text-center" style="text-align: center;">
+                    <div style="font-size: 50px; margin-bottom: 20px; color: var(--silver-400);">💎</div>
+                    <h3 style="color: var(--silver-100); margin-bottom: 10px;">Anillo de Autor</h3>
+                    <p>Diseño geométrico en Plata Ley 999 fundida a medida con Zafiro central corte brillante.</p>
+                </div>
+                <div class="glass-card card-anim text-center" style="text-align: center;">
+                    <div style="font-size: 50px; margin-bottom: 20px; color: var(--silver-400);">👑</div>
+                    <h3 style="color: var(--silver-100); margin-bottom: 10px;">Gargantilla Técnica</h3>
+                    <p>Eslabones tejidos con precisión láser, baño de rodio platino para brillo eterno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section" id="equipo">
+        <div class="container">
+            <div class="section-header card-anim">
+                <span class="label">Nuestro Atelier</span>
+                <h2 class="section-title">Manos y Tecnología que forjan</h2>
+            </div>
+            <div class="grid-3 text-center" style="text-align: center;">
+                <div class="glass-card card-anim">
+                    <div class="team-icon">⚒️</div>
+                    <h3>Eduardo Peñaloza</h3>
+                    <span class="label" style="margin-top: 5px; color: var(--silver-400);">Maestro Orfebre</span>
+                    <p>"Forja clásica combinada con micro-soldadura láser técnica."</p>
+                </div>
+                <div class="glass-card card-anim">
+                    <div class="team-icon">�️</div>
+                    <h3>Sebastian Gonzalez</h3>
+                    <span class="label" style="margin-top: 5px; color: var(--silver-400);">Diseñador CAD 3D</span>
+                    <p>"Traduciendo imaginación a renderizados y matrices perfectas."</p>
+                </div>
+                <div class="glass-card card-anim">
+                    <div class="team-icon">⚙️</div>
+                    <h3>Erik Balboa</h3>
+                    <span class="label" style="margin-top: 5px; color: var(--silver-400);">Ing. Tasador</span>
+                    <p>"Precisión gemológica y honestidad certificada en evaluación de pureza."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section" id="testimonios">
+        <div class="container">
+            <div class="section-header card-anim">
+                <h2 class="section-title">Historias brillando en metal puro</h2>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card card-anim">
+                    <div class="quote-icon">"</div>
+                    <p style="margin-bottom: 20px; font-style: italic; color: var(--text-secondary);">"Llevé las joyas
+                        antiguas de mi abuela y lograron restaurarlas manteniendo su esencia original con un brillo
+                        metálico frío precioso. Trabajo impecable."</p>
+                    <h4 style="color: var(--silver-100);">— Sofía T.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="glass-card card-anim">
+                    <div class="quote-icon">"</div>
+                    <p style="margin-bottom: 20px; font-style: italic; color: var(--text-secondary);">"El diseño técnico
+                        de mis alianzas de platino superó lo que habíamos soñado. La precisión CAD y el acabado cromo
+                        son de otro nivel."</p>
+                    <h4 style="color: var(--silver-100);">— Andrés L.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="glass-card card-anim">
+                    <div class="quote-icon">"</div>
+                    <p style="margin-bottom: 20px; font-style: italic; color: var(--text-secondary);">"Me tasaron unas
+                        piezas de plata Ley con total transparencia y el pago fue inmediato. Muy profesionales,
+                        certificado técnico incluido."</p>
+                    <h4 style="color: var(--silver-100);">— Roberto G.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final" id="contacto">
+        <div class="container card-anim">
+            <h2 class="section-title" style="font-size: 56px;">¿Listo para materializar tu idea en puro metal?</h2>
+            <p class="body-large" style="max-width: 600px; margin: 0 auto 40px auto; color: var(--text-primary);">Agenda
+                tu cita técnica en nuestro atelier o envíanos una foto para cotizar tu reparación/venta sin compromiso.
+            </p>
+            <a href="#" class="btn-primary" style="font-size: 18px; padding: 20px 40px;">Contactar Cita Técnica</a>
+            <p style="margin-top: 30px; font-size: 14px; color: var(--silver-400);">📞 +593 098 197 5382 &nbsp;|&nbsp;
+                📍
+                Distrito del Lujo técnico, Centro Histórico</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo-text glow-text" style="display: block; margin-bottom: 20px;">LÚMINA</a>
+                    <p style="font-weight: 300;">Donde la tradición técnica se funde con tu estilo: Compra, restauración
+                        avanzada y diseño CAD/CAM de alta joyería en plata u platino certificada.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicios Técnicos</h4>
+                    <ul>
+                        <li><a href="#">Tasación Pureza</a></li>
+                        <li><a href="#">Diseño CAD/CAM</a></li>
+                        <li><a href="#">Restauración Láser</a></li>
+                        <li><a href="#">Grabado Fibra</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Atelier</h4>
+                    <ul>
+                        <li><a href="#">Nuestros Maestros</a></li>
+                        <li><a href="#">Galería Metálica</a></li>
+                        <li><a href="#">Tecnología Certificada</a></li>
+                        <li><a href="#">Contacto Técnico</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Términos Técnicos</a></li>
+                        <li><a href="#">Privacidad Datos</a></li>
+                        <li><a href="#">Garantía Pureza</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lúmina Plata & Arte. Todos los derechos reservados. Orfebrería y Tecnología certificada.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* 1. SISTEMA DE PARTÍCULAS DE LUZ (Hero) */
+            const particlesContainer = document.querySelector('.particles');
+            if (particlesContainer) {
+                const particleCount = 40;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.width = (2 + Math.random() * 4) + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                    particle.style.opacity = (0.2 + Math.random() * 0.5).toString();
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            /* 2. NAVBAR SCROLL DETECTION */
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+            });
+
+            /* 3. MOBILE MENU TOGGLE */
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    // Opcional: animar hamburguesa
+                });
+            }
+
+            /* 4. SMOOTH SCROLL */
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (navLinks) {
+                        navLinks.classList.remove('active'); // Close mobile menu if open
+                    }
+                    const href = this.getAttribute('href');
+                    if (href === '#') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+
+            /* 5. FLIP CARDS MOBILE FIX (Click instead of hover) */
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.flip-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        card.classList.toggle('flipped');
+                    });
+                });
+            }
+
+            /* 6. CONTADORES ANIMADOS */
+            function animateCounter(element, target, duration = 2000) {
+                const increment = target / (duration / 16); // 16ms approx per frame (60fps)
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = Math.round(target);
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.round(current);
+                    }
+                }, 16);
+            }
+
+            /* 7. SCROLL REVEAL (Intersection Observer) */
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px' // Reveal slightly before it enters viewport
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+
+                        // Revelar elementos generales (excluir caras de flip-card para no sobreescribir rotateY)
+                        if (entry.target.classList.contains('card-anim') &&
+                            !entry.target.classList.contains('flip-card-front') &&
+                            !entry.target.classList.contains('flip-card-back')) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            observer.unobserve(entry.target);
+                        } else if (entry.target.classList.contains('flip-card-front') || entry.target.classList.contains('flip-card-back')) {
+                            // Las caras de flip no necesitan reveal: siempre visibles, solo el flip-card padre se revela
+                            observer.unobserve(entry.target);
+                        }
+
+                        // Animar contadores si entra en la seccion stats
+                        if (entry.target.classList.contains('stats-section')) {
+                            const counters = entry.target.querySelectorAll('.counter');
+                            counters.forEach(counter => {
+                                const target = parseInt(counter.getAttribute('data-target'));
+                                animateCounter(counter, target);
+                            });
+                            observer.unobserve(entry.target); // Unobserve after triggering counters
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observar elementos para revelar (tarjetas y headers)
+            // IMPORTANTE: excluir .flip-card-front y .flip-card-back del selector para no corromper sus transforms 3D
+            document.querySelectorAll('.card-anim, .flip-card').forEach((el, index) => {
+                // Efecto Stagger para grids (retraso incremental)
+                if (el.classList.contains('flip-card')) {
+                    el.style.transitionDelay = `${(index % 3) * 0.15}s`;
+                }
+                observer.observe(el);
+            });
+
+            // Observar glass-cards que NO sean caras de flip-card
+            document.querySelectorAll('.glass-card:not(.flip-card-back):not(.flip-card-front)').forEach((el) => {
+                if (!el.classList.contains('card-anim')) el.classList.add('card-anim');
+                observer.observe(el);
+            });
+
+            // Observar seccion de contadores para activarla
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) observer.observe(statsSection);
+
+        });
+    </script>
+</body>
+
+</html>
