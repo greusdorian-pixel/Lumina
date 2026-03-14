@@ -928,76 +928,84 @@
             transform: scale(1);
         }
 
-        .mannequin-view {
+        .showcase-view {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100%;
-            perspective: 1000px;
         }
 
-        .mannequin-asset {
-            width: 100%;
-            max-width: 480px;
-            filter: brightness(0.7) contrast(1.1) grayscale(0.5); /* Más sutil para atmósfera */
-            opacity: 0.6;
-            animation: slow-rotate 15s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        .jewelry-showcase {
-            position: absolute;
+        .luxury-case {
+            position: relative;
             z-index: 10;
-            width: 320px;
-            height: 320px;
+            width: 380px;
+            height: 480px;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Marco de Plata Premium */
-            border: 2px solid rgba(192, 192, 192, 0.4);
-            border-radius: 50%; /* Uniforme y elegante */
-            padding: 15px;
-            background: radial-gradient(circle at center, rgba(10, 10, 11, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(192, 192, 192, 0.1), inset 0 0 30px rgba(192, 192, 192, 0.05);
-            backdrop-filter: blur(15px);
-            animation: float-showcase 6s ease-in-out infinite;
+            /* Estética de Estuche de Terciopelo */
+            background: #050505;
+            border: 8px solid #1a1a1b;
+            border-radius: 4px;
+            box-shadow: 
+                0 50px 100px rgba(0,0,0,0.9),
+                0 0 20px rgba(192, 192, 192, 0.1),
+                inset 0 0 60px rgba(0, 0, 0, 1);
             overflow: hidden;
+            animation: case-entrance 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .jewelry-item {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Asegura que llene el círculo uniformemente */
-            border-radius: 50%;
-            filter: brightness(1.1) contrast(1.05);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 95%;
+            height: 95%;
+            object-fit: contain; /* No altera ni corta la cadena */
+            filter: brightness(1.05) contrast(1.1);
+            transition: transform 1s ease;
         }
 
         .catalog-panel.active .jewelry-item {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
-        .jewelry-showcase::after {
+        /* Reflejo de Cristal Superior */
+        .luxury-case::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -100%;
+            width: 50%;
             height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 40%, rgba(255, 255, 255, 0.1) 100%);
-            pointer-events: none;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transform: skewX(-25deg);
+            z-index: 15;
+            animation: shine-glass 5s infinite;
         }
 
-        @keyframes slow-rotate {
-            0%, 100% { transform: rotateY(-15deg); }
-            50% { transform: rotateY(15deg); }
+        /* Sombra Proyectada en el Piso */
+        .case-shadow {
+            position: absolute;
+            bottom: -20px;
+            width: 80%;
+            height: 40px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 70%);
+            filter: blur(10px);
+            z-index: 5;
         }
 
-        @keyframes float-showcase {
-            0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-            50% { transform: translateY(-25px) scale(1.02); box-shadow: 0 40px 80px rgba(0,0,0,0.9), 0 0 30px rgba(192,192,192,0.15); }
+        @keyframes case-entrance {
+            from { opacity: 0; transform: translateY(40px) rotateX(10deg); }
+            to { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+
+        @keyframes shine-glass {
+            0% { left: -100%; }
+            20%, 100% { left: 200%; }
         }
 
         .catalog-content {
@@ -1292,11 +1300,11 @@
             <div class="catalog-track">
                 <!-- Panel 1: Steven -->
                 <div class="catalog-panel active">
-                    <div class="mannequin-view">
-                        <img src="imagenes/maniquie_premium.png" alt="Maniquí Premium" class="mannequin-asset">
-                        <div class="jewelry-showcase">
+                    <div class="showcase-view">
+                        <div class="luxury-case">
                             <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.11 (1).jpeg" alt="Collar Steven" class="jewelry-item">
                         </div>
+                        <div class="case-shadow"></div>
                     </div>
                     <div class="catalog-content">
                         <span class="label">Colección Identidad</span>
@@ -1307,11 +1315,11 @@
                 </div>
                 <!-- Panel 2: Elkin -->
                 <div class="catalog-panel">
-                    <div class="mannequin-view">
-                        <img src="imagenes/maniquie_cristal.png" alt="Maniquí Cristal" class="mannequin-asset">
-                        <div class="jewelry-showcase">
+                    <div class="showcase-view">
+                        <div class="luxury-case">
                             <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.14.jpeg" alt="Collar Elkin" class="jewelry-item">
                         </div>
+                        <div class="case-shadow"></div>
                     </div>
                     <div class="catalog-content">
                         <span class="label">Serie Geométrica</span>
@@ -1322,11 +1330,11 @@
                 </div>
                 <!-- Panel 3: Autor -->
                 <div class="catalog-panel">
-                    <div class="mannequin-view">
-                        <img src="imagenes/maniquie_premium.png" alt="Maniquí Premium" class="mannequin-asset">
-                        <div class="jewelry-showcase">
+                    <div class="showcase-view">
+                        <div class="luxury-case">
                             <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.13.jpeg" alt="Gargantilla de Autor" class="jewelry-item">
                         </div>
+                        <div class="case-shadow"></div>
                     </div>
                     <div class="catalog-content">
                         <span class="label">Maestría Artesanal</span>
@@ -1337,11 +1345,11 @@
                 </div>
                 <!-- Panel 4: Técnica -->
                 <div class="catalog-panel">
-                    <div class="mannequin-view">
-                        <img src="imagenes/maniquie_cristal.png" alt="Maniquí Cristal" class="mannequin-asset">
-                        <div class="jewelry-showcase">
+                    <div class="showcase-view">
+                        <div class="luxury-case">
                             <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.12.jpeg" alt="Cadena Técnica" class="jewelry-item">
                         </div>
+                        <div class="case-shadow"></div>
                     </div>
                     <div class="catalog-content">
                         <span class="label">Ingeniería en Metal</span>
@@ -1352,11 +1360,11 @@
                 </div>
                 <!-- Panel 5: Pulsera -->
                 <div class="catalog-panel">
-                    <div class="mannequin-view">
-                        <img src="imagenes/maniquie_premium.png" alt="Maniquí Premium" class="mannequin-asset">
-                        <div class="jewelry-showcase">
+                    <div class="showcase-view">
+                        <div class="luxury-case">
                             <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.11 (2).jpeg" alt="Pulsera Elite" class="jewelry-item">
                         </div>
+                        <div class="case-shadow"></div>
                     </div>
                     <div class="catalog-content">
                         <span class="label">Serie Limitada</span>
@@ -1367,11 +1375,11 @@
                 </div>
                 <!-- Panel 6: Minimal -->
                 <div class="catalog-panel">
-                    <div class="mannequin-view">
-                        <img src="imagenes/maniquie_cristal.png" alt="Maniquí Cristal" class="mannequin-asset">
-                        <div class="jewelry-showcase">
+                    <div class="showcase-view">
+                        <div class="luxury-case">
                             <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.13 (2).jpeg" alt="Conjunto Minimal" class="jewelry-item">
                         </div>
+                        <div class="case-shadow"></div>
                     </div>
                     <div class="catalog-content">
                         <span class="label">Esencia Pura</span>
