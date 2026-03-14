@@ -127,6 +127,7 @@
         .text-gradient {
             background: linear-gradient(135deg, var(--silver-500) 0%, var(--silver-200) 50%, var(--silver-500) 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -944,18 +945,19 @@
 
         .jewelry-item {
             position: absolute;
-            top: 40%;
+            top: 45%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
+            width: 280px; /* Más grande para impacto premium */
             z-index: 10;
-            filter: drop-shadow(0 5px 20px rgba(255, 255, 255, 0.3));
+            filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.4));
             animation: fabric-sway 5s ease-in-out infinite;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 5px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            object-fit: contain;
         }
 
         .catalog-content {
@@ -986,24 +988,50 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
+            align-items: center;
             gap: 20px;
             z-index: 100;
         }
 
+        .catalog-btn {
+            background: rgba(192, 192, 192, 0.1);
+            border: 1px solid rgba(192, 192, 192, 0.2);
+            color: var(--silver-200);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .catalog-btn:hover {
+            background: var(--silver-500);
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 12px;
+        }
+
         .nav-dot {
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: rgba(192, 192, 192, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid rgba(192, 192, 192, 0.1);
         }
 
         .nav-dot.active {
             background: var(--silver-300);
             transform: scale(1.4);
-            box-shadow: 0 0 15px var(--silver-500);
+            box-shadow: 0 0 10px var(--silver-500);
         }
 
         @keyframes slow-float {
@@ -1012,8 +1040,8 @@
         }
 
         @keyframes fabric-sway {
-            0%, 100% { transform: translate(-50%, -50%) rotate(-1deg) scale(1); }
-            50% { transform: translate(-50%, -48%) rotate(1deg) scale(1.02); }
+            0%, 100% { transform: translate(-50%, -50%) rotate(-1deg) scale(1.1); }
+            50% { transform: translate(-50%, -48%) rotate(1deg) scale(1.15); }
         }
 
         .ambient-audio {
@@ -1283,13 +1311,45 @@
                         <a href="#contacto" class="btn-primary">Explorar Serie</a>
                     </div>
                 </div>
+                <!-- Panel 5: Pulsera -->
+                <div class="catalog-panel">
+                    <div class="mannequin-view">
+                        <img src="imagenes/maniquie_premium.png" alt="Maniquí Premium" class="mannequin-asset">
+                        <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.11 (2).jpeg" alt="Pulsera Elite" class="jewelry-item">
+                    </div>
+                    <div class="catalog-content">
+                        <span class="label">Serie Limitada</span>
+                        <h2 class="glow-text">Pulsera Elite</h2>
+                        <p>Eslabones reforzados con cierre de seguridad industrial. La joya perfecta para quien busca distinción y fuerza en su muñeca.</p>
+                        <a href="#contacto" class="btn-primary">Cotizar Pieza</a>
+                    </div>
+                </div>
+                <!-- Panel 6: Minimal -->
+                <div class="catalog-panel">
+                    <div class="mannequin-view">
+                        <img src="imagenes/maniquie_cristal.png" alt="Maniquí Cristal" class="mannequin-asset">
+                        <img src="imagenes/WhatsApp Image 2026-03-12 at 22.35.13 (2).jpeg" alt="Conjunto Minimal" class="jewelry-item">
+                    </div>
+                    <div class="catalog-content">
+                        <span class="label">Esencia Pura</span>
+                        <h2 class="glow-text">Dúo Lúmina</h2>
+                        <p>Simplicidad llevada a la perfección orfebre. Un equilibrio entre forma y función bañado en la más pura plata ley .925.</p>
+                        <a href="#contacto" class="btn-primary">Ver Colección</a>
+                    </div>
+                </div>
             </div>
             
             <div class="catalog-nav">
-                <div class="nav-dot active" data-index="0"></div>
-                <div class="nav-dot" data-index="1"></div>
-                <div class="nav-dot" data-index="2"></div>
-                <div class="nav-dot" data-index="3"></div>
+                <div class="catalog-btn prev" id="catalog-prev">←</div>
+                <div class="nav-dots">
+                    <div class="nav-dot active" data-index="0"></div>
+                    <div class="nav-dot" data-index="1"></div>
+                    <div class="nav-dot" data-index="2"></div>
+                    <div class="nav-dot" data-index="3"></div>
+                    <div class="nav-dot" data-index="4"></div>
+                    <div class="nav-dot" data-index="5"></div>
+                </div>
+                <div class="catalog-btn next" id="catalog-next">→</div>
             </div>
 
             <div class="ambient-audio">
@@ -1563,13 +1623,19 @@
             const statsSection = document.querySelector('.stats-section');
             if (statsSection) observer.observe(statsSection);
 
-            /* 8. LÓGICA DEL CATÁLOGO INFINITO */
+            /* 8. LÓGICA DEL CATÁLOGO INFINITO CON NAVEGACIÓN MANUAL */
             const track = document.querySelector('.catalog-track');
             const panels = document.querySelectorAll('.catalog-panel');
             const dots = document.querySelectorAll('.nav-dot');
+            const btnPrev = document.getElementById('catalog-prev');
+            const btnNext = document.getElementById('catalog-next');
             let currentPanel = 0;
 
             function updateCatalog(index) {
+                // Manejo de infinito circular
+                if (index >= panels.length) index = 0;
+                if (index < 0) index = panels.length - 1;
+                
                 currentPanel = index;
                 if (track) {
                     track.style.transform = `translateX(-${index * 100}%)`;
@@ -1584,48 +1650,45 @@
                 });
             }
 
+            // Click en puntitos
             dots.forEach(dot => {
                 dot.addEventListener('click', () => {
                     const index = parseInt(dot.getAttribute('data-index'));
                     updateCatalog(index);
+                    resetInterval(); // Reiniciar auto-avance al interactuar
                 });
             });
 
-            // Auto-avance suave
-            let catalogInterval = setInterval(() => {
-                let next = (currentPanel + 1) % panels.length;
-                updateCatalog(next);
-            }, 8000);
-
-            if (track) {
-                track.addEventListener('mouseenter', () => clearInterval(catalogInterval));
-                track.addEventListener('mouseleave', () => {
-                    catalogInterval = setInterval(() => {
-                        let next = (currentPanel + 1) % panels.length;
-                        updateCatalog(next);
-                    }, 8000);
+            // Botones Manuales
+            if (btnPrev && btnNext) {
+                btnPrev.addEventListener('click', () => {
+                    updateCatalog(currentPanel - 1);
+                    resetInterval();
+                });
+                btnNext.addEventListener('click', () => {
+                    updateCatalog(currentPanel + 1);
+                    resetInterval();
                 });
             }
 
-            // Soporte para swipe/drag básico
-            let startX = 0;
-            if (track) {
-                track.addEventListener('mousedown', (e) => {
-                    startX = e.pageX;
-                    track.style.cursor = 'grabbing';
-                });
+            // Auto-avance suave
+            let catalogInterval;
+            function startInterval() {
+                catalogInterval = setInterval(() => {
+                    updateCatalog(currentPanel + 1);
+                }, 8000);
+            }
 
-                track.addEventListener('mouseup', (e) => {
-                    track.style.cursor = 'grab';
-                    const diff = startX - e.pageX;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) {
-                            updateCatalog((currentPanel + 1) % panels.length);
-                        } else {
-                            updateCatalog((currentPanel - 1 + panels.length) % panels.length);
-                        }
-                    }
-                });
+            function resetInterval() {
+                clearInterval(catalogInterval);
+                startInterval();
+            }
+
+            startInterval();
+
+            if (track) {
+                track.addEventListener('mouseenter', () => clearInterval(catalogInterval));
+                track.addEventListener('mouseleave', startInterval);
             }
 
         });
